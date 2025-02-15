@@ -3,47 +3,54 @@
 from fastapi import FastAPI
 from typing import Annotated
 from pydantic import BaseModel
-from logic import user, tasks
-
-# import logic.user as user, logic.tasks as tasks
+from logic.tasks import Task
+from logic.user import User
 
 app = FastAPI()
 
-class Task(BaseModel):
-    # mock before linking to backend
-    name: str
+# class User(BaseModel): name: str
+db: dict[str, User]
 
-db: dict[str, Task] = {"brush teeth": Task(name="brush teeth")}
-# have habits already populated
+# examples to model functionality
+caroline: User = User("Caroline", "cgbryan")
+caroline.add_task("Stats homework", False)
+caroline.add_task("Host office hours", True)
 
-# access paths
+db[caroline.username] = caroline
 
-@app.post("/{task_name}")
-def new_task(task: Task):
+katie: User = User("katie", "kgbrown5")
+katie.add_task("Host office hours", True)
+katie.add_task("Stats homework", False)
+
+db[katie.username] = katie
+
+
+@app.post("/{username}/{task_name}")
+def new_task(username: str, task_name: str):
+    #TODO how to make recurring?
     # add to database
     # return success
 
-@app.get("/{task_name}")
-def access_task(task_name: str) -> Task:
+@app.get("/{username}/{task_name}")
+def access_task(username: str, task_name: str) -> Task:
     # finds task based on title
-    return user.get_task(task_name)
+    return db[username].get_task(task_name)
 
-@app.patch("/{task_name}")
-def toggle_check(task: Task) -> Task:
-    task = user.get_task(task)
+@app.patch("/{username}/{task_name}")
+def toggle_check(username: str, task_name: str) -> Task:
+    task = db[username].get_task(task_name)
     task.toggle_completion()
-
     return task
 
-@app.delete("/{task_name}")
-def access_task(task: Task) -> Task:
-    # confirm if habit, do you want to delete this reoccuring habit?
-    # delete task
-    delete_task()
-    # return success
+@app.delete("/{username}/{task_name}")
+def delete_task(username: str, task_name: str) -> Task:
+    db[username].delete_task(db[username].get_task(task_name))
+    # TODO return success
 
-@app.get("/")
-def access_task_list() -> list[str]:
+@app.get("/{username}")
+def access_task_list(username: str) -> list[str]:
+    return db[username].tasks
     # run through database, extract name, add to list to be returned
+    # TODO probs not safe to return own list
 
 # TODO: reordering

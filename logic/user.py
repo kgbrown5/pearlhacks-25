@@ -1,7 +1,7 @@
 """Business logic for user"""
+from __future__ import annotations
 from typing import List
 from logic.tasks import Task
-from __future__ import annotations
 
 class User:
 
@@ -22,9 +22,9 @@ class User:
                 return task
         return None
 
-    def add_task(self, task: Task) -> None:
+    def add_task(self, name: str, recurr: bool) -> None:
         """Adding a task to do list."""
-        self.tasks.append(task)
+        self.tasks.append(Task(name, recurr))
 
 
     def toggle_completion(self, task: Task) -> None:
@@ -77,6 +77,7 @@ class User:
         if (not self.tasks or len(self.tasks) == 0) : # catch errors with empty lists
             return 0.0 
         else:
+            completed: int = 0
             for task in self.tasks:
                 if task.recurring:
                     completed += 1
