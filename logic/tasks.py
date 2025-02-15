@@ -1,12 +1,7 @@
 """Business logic"""
+from pydantic import BaseModel
 
-class Task:
-
+class Task(BaseModel):
     task_name: str
     recurring: bool
     done: bool
-
-    def __init__(self, name: str, recurring: bool):
-        self.task_name = name
-        self.recurring = recurring
-        self.done = False

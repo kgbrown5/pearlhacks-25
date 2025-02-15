@@ -2,33 +2,34 @@
 from __future__ import annotations
 from typing import List
 from logic.tasks import Task
+from pydantic import BaseModel
 
-class User:
+class User(BaseModel):
 
     name: str
     username: str
-    percent_completed: float
-    tasks: List[Task]
-
-    def __init__(self, name: str, username: str):
-        self.name = name
-        self.username = username
-        self.percent_completed = 0.0
-        self.tasks = []
+    percent_completed: float = 0.0
+    tasks: List[Task] = []
 
     def get_task(self, name:str) -> Task:
         for task in self.tasks:
-            if task.name == name:
+            if task.task_name == name:
                 return task
         return None
 
     def add_task(self, name: str, recurr: bool) -> None:
         """Adding a task to do list."""
-        self.tasks.append(Task(name, recurr))
+        self.tasks.append(Task(task_name=name, recurring=recurr, done=False))
 
 
-    def toggle_completion(self, task: Task) -> None:
+    def toggle_completion(self, name: str) -> None:
         """Mark task as complete and move to bottom of list."""
+        task: Task
+
+        for specific_task in self.tasks:
+            if specific_task.task_name == name:
+                task = specific_task
+
         task.done = not task.done
 
         if task.done: # if marked as complete
@@ -40,7 +41,7 @@ class User:
             self.tasks.pop(self.tasks.index(task))
             self.tasks.insert(0, task)
 
-        self.update_percent_completion()
+        self.update_percent_completed()
 
     def move_task_up(self, task: Task) -> None:
         """When up botton is clicked, moves task to index before current position."""
