@@ -1,0 +1,23 @@
+{
+    "name": "Pearl Hacks 2025",
+    "image": "mcr.microsoft.com/devcontainers/python:latest",
+    "features": {"ghcr.io/devcontainers/features/node:1": {
+            "version": "18"
+        }},
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": ["ms-python.python",
+                        "ms-python.vscode-pylance",
+                        "ms-toolsai.jupyter",
+                        "charliermarsh.ruff",
+                        "msjsdiag.vscode-react-native",
+                        "esbenp.prettier-vscode",
+                        "dbaeumer.vscode-eslint",
+                        "formulahendry.auto-close-tag",
+                        "formulahendry.auto-rename-tag",
+                        "eamodio.gitlens"]
+        }   
+    },
+    "postCreateCommand": "pip install fastapi uvicorn && npm install -g expo-cli"
+}
