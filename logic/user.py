@@ -1,6 +1,6 @@
 """Business logic for user"""
 from typing import List
-from tasks import Task
+from logic.tasks import Task
 
 class User:
 
@@ -15,6 +15,10 @@ class User:
         self.percent_completed = 0.0
         self.tasks = []
 
+    def get_task(self, name:str) -> Task:
+        for task in self.tasks:
+            if task.name == name:
+                return task
 
     def add_task(self, task: Task) -> None:
         """Adding a task to do list."""
