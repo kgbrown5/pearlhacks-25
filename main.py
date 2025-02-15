@@ -9,7 +9,7 @@ from logic.user import User
 app = FastAPI()
 
 # class User(BaseModel): name: str
-db: dict[str, User]
+db: dict[str, User] = []
 
 # examples to model functionality
 caroline: User = User("Caroline", "cgbryan")
@@ -27,9 +27,11 @@ db[katie.username] = katie
 
 @app.post("/{username}/{task_name}")
 def new_task(username: str, task_name: str):
+    return
     #TODO how to make recurring?
     # add to database
     # return success
+
 
 @app.get("/{username}/{task_name}")
 def access_task(username: str, task_name: str) -> Task:
