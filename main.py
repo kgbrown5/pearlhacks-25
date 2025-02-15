@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from typing import Annotated
 from pydantic import BaseModel
 from logic import user, tasks
+
 # import logic.user as user, logic.tasks as tasks
 
 app = FastAPI()
@@ -28,9 +29,11 @@ def access_task(task_name: str) -> Task:
     return user.get_task(task_name)
 
 @app.patch("/{task_name}")
-def check_off(task: Task) -> Task:
-    # change done to true
-    # return full task
+def toggle_check(task: Task) -> Task:
+    task = user.get_task(task)
+    task.toggle_completion()
+
+    return task
 
 @app.delete("/{task_name}")
 def access_task(task: Task) -> Task:
