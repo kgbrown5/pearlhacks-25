@@ -24,7 +24,7 @@ class User:
     def complete_task(self, task: Task) -> None:
         """Mark task as complete and move to bottom of list."""
         task.done = True
-        self.tasks.pop(tasks.index(task))
+        self.tasks.pop(self.tasks.index(task))
         self.tasks.append(task)
 
     def move_task_up(self, task: Task) -> None:
@@ -37,13 +37,17 @@ class User:
 
     def move_task_down(self, task: Task) -> None:
         """When down botton is clicked, triggers task to move down one in list."""
-        old_pos: int = tasks.index(task)
+        old_pos: int = self.tasks.index(task)
         new_pos: int = old_pos + 1
 
-        self.tasks[old_pos] = tasks[new_pos]
+        self.tasks[old_pos] = self.tasks[new_pos]
         self.tasks[new_pos] = task
 
 
+    def delete_task(self, task:Task) -> None:
+        self.tasks.pop(self.tasks.index(task))
+
+    
     def reset_list(self) -> None:
         """When day resets, remove daily tasks and keep recurring ones."""
         i: int = 0
