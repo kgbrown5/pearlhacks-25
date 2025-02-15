@@ -9,11 +9,7 @@ from logic.user import User
 app = FastAPI()
 
 # class User(BaseModel): name: str
-<<<<<<< HEAD
 db: dict[str, User] = {}
-=======
-db: dict[str, User] = []
->>>>>>> ac283dd51cf29b5bd12579c49c12a19125566f6c
 
 # examples to model functionality
 caroline: User = User(name="Caroline", username="cgbryan1")
