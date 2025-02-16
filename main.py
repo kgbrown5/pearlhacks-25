@@ -95,3 +95,11 @@ def access_task_list(username: str):
     
     return {"tasks": user.tasks}
 
+@app.delete("/{username}")
+def reset_list(username: str) -> None:
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    user.reset_list()
+    return {"message": "Tasks cleared successfully."}, status.HTTP_200_OK
