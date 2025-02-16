@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>To Do List</title>
+        <title>TaskDash</title>
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Inconsolata:wght@200..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h2>Today's Tasks</h2>
-        <div id = "list-group">
-            <!-- for all items given, populate this with ULIs: checkbox, name, arrows to change priority, and trash button -->
-            <ul id="task-item"></ul>
-        <form id = "task-form">
-            <input type="text" id="username" placeholder="Enter username" required>
-            <input type="text" id="task-name" placeholder="Enter task" required>
-            <input type="checkbox" id="task-recur"> Recurring?
-            <button type="submit">Add Task</button>
-        </form>
-        <button id="reset">Reset To Do List</button>
+        <header>
+            <h2>TaskDash</h2>
+        </header>
+        <div id="main">
+        <main>
+            <div id = "list-group">
+                <!-- for all items given, populate this with ULIs: checkbox, name, arrows to change priority, and trash button -->
+                <h2>Today's Tasks</h2>
+                <ul id="task-item"> <!--sample front end-->
+                    <li>host office hours</li>
+                    <li>make bed</li>
+                    <li>demo at pearl hacks!</li>
+                </ul>
+                </div>
+                <div id="buttons">
+                    <form id = "task-form">
+                        <input type="text" id="username" placeholder="Enter username" required>
+                        <input type="text" id="task-name" placeholder="Enter task" required>
+                        <input type="checkbox" id="task-recur"> Recurring?
+                        <button type="submit">Add Task</button>
+                    </form>
+                    <button id="reset">Reset To Do List</button>
+                </div>
+        </main>
+        <aside>
+            <h2>Race to Finish</h2>
+            <img src="track.png">
+        </aside>
+    </div>
     </body>
 </html>
