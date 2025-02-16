@@ -63,7 +63,7 @@ const createTask = async (username, taskName) => {
       }
 };
 
-// reate_task API path
+// create_task API path
 
 let form = document.getElementById("task-form")
 form?.addEventListener("submit", async (event) => {
@@ -76,6 +76,28 @@ form?.addEventListener("submit", async (event) => {
     (document.getElementById("task-recur") as HTMLInputElement).checked = false;
 
     await createTask(taskName, doesRepeat);
+});
+
+// PATCH, reset_list
+const reset_list = async(username) => {
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/${username}`, {
+      method: "PATCH",
+    });
+
+    await renderTaskList(username)
+
+    if (!response.ok) {
+      throw new Error("Failed to reset task list.");
+    }
+  } catch (error) {
+    console.error("Error resetting task list:", error);
+  }
+};
+
+let resetButton = document.getElementById("reset")
+resetButton?.addEventListener("click", async (event) => {
+  //TODO need username input for reset_list(username)
 });
 
 
