@@ -19,7 +19,7 @@ katie.add_task("Host office hours", True)
 katie.add_task("Stats homework", False)
 db[katie.username] = katie
 
-@app.post("/{username}/{task_name}")
+@app.post("/{username}/{task_name}") # how to show recurring?
 def new_task(username: str, task_name: str, reoccur: bool):
     user = db.get(username)
     if not user:
@@ -64,7 +64,7 @@ def delete_task(username: str, task_name: str):
         return {"error": "Task not found"}, status.HTTP_404_NOT_FOUND
     
     user.delete_task(task)
-    return {"message": "Task deleted successfully."}, status.HTTP_204_NO_CONTENT
+    # return {"message": "Task deleted successfully."}, status.HTTP_204_NO_CONTENT
 
 # Moving a task up or down
 @app.patch("/{username}/{task_name}/{direction}")

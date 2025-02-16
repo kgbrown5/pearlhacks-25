@@ -1,5 +1,5 @@
 
-let lists = document.getElementById("list-group")
+// let lists = document.getElementById("list-group")
 
 // GET, access_task_list
 const getTaskList = async (username) => {
@@ -46,10 +46,16 @@ const renderTaskList = async (username: string) => {
 }
 
 // new_task, POST
-const createTask = async (username, taskName) => {
+const createTask = async (username, taskName, doesRepeat) => {
     try {
         const response = await fetch(`http://127.0.0.1:8000/${username}/${taskName}`, {
-        method: "POST",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+              task_name: taskName,
+              reoccur: doesRepeat
+          })
+
         });
     
         if (!response.ok) {
