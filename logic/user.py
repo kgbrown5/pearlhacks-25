@@ -84,4 +84,4 @@ class User(BaseModel):
                     completed += 1
 
             return (float)(completed / len(self.tasks) * 100)
-        
+    

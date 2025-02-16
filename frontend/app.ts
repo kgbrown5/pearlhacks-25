@@ -74,14 +74,14 @@ const createTask = async (username, taskName, doesRepeat) => {
 let form = document.getElementById("task-form")
 form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const taskName = (document.getElementById("task-name") as HTMLInputElement).value;
+    const username = (document.getElementById("username") as HTMLInputElement).value.trim();
+    const taskName = (document.getElementById("task-name") as HTMLInputElement).value.trim();
     const doesRepeat = (document.getElementById("task-recur") as HTMLInputElement).checked;
-    // TODO const username = ____
 
     (document.getElementById("task-name") as HTMLInputElement).value = "";
     (document.getElementById("task-recur") as HTMLInputElement).checked = false;
 
-    await createTask(taskName, doesRepeat);
+    await createTask(username, taskName, doesRepeat);
 });
 
 // PATCH, reset_list
@@ -103,7 +103,12 @@ const reset_list = async(username) => {
 
 let resetButton = document.getElementById("reset")
 resetButton?.addEventListener("click", async (event) => {
-  //TODO need username input for reset_list(username)
+  const username = (document.getElementById("username") as HTMLInputElement).value.trim();
+  if (!username) {
+      alert("Please enter a username to reset the task list.");
+      return;
+  }
+  await reset_list(username);
 });
 
 
