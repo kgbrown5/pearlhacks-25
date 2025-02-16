@@ -14,22 +14,20 @@ Task Dash is a program that allows users to compete with friends to finish their
 Users can view and edit their to do lists on the "tasks" (leftmost) page. Users can view their friends' progress in the center screen, and edit their own settings and friend connections on the right screen.
 
 
-##### How we built it
+#### How we built it
 We built Task Dash using ____.
 We used Figma to create wireframes for prototyping. 
 We also utilized Github to manage versions and allow collaboration between members of our team.
 
-##### Challenges we ran into
+#### Challenges, accomplishments, & what we learned
 Since we were a two-person team and had a limited working window, we had to significantly reduce the scope of our project from its original mockup.
 
-##### Accomplishments that we're proud of
 put somethinbg abt fastAPIs here demonstrrate learning
 
-##### What we learned
 
+#### What's next for Task Dash
 
-##### What's next for Task Dash
 what we'd do if we had more time basically
 
-#### Devpost
+### Devpost
 link here
