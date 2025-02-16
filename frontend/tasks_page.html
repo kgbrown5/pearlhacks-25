@@ -5,16 +5,14 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
+        <h2>Today's Tasks</h2>
         <div id = "list-group">
-            <div id = "recurring">
-                <!-- for all items given, populate this with ULIs: checkbox, name, arrows, and trash icon -->
-                 <div id = "list-item">
-                    
-                 </div>
-            </div>
-            <div id = "recur-list">
-                <!-- for all items given, populate this -->
-            </div>
-        </div>
+            <!-- for all items given, populate this with ULIs: checkbox, name, arrows to change priority, and trash button -->
+            <ul id="task-list"></ul>
+        <form id = "task-form">
+            <input type="text" id="task-name" placeholder="Enter task" required>
+            <input type="checkbox" id="task-recur"> Recurring?
+            <button type="submit">Add Task</button>
+        </form>
     </body>
 </html>

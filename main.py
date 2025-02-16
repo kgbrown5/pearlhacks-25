@@ -1,7 +1,7 @@
 """Connecting the Front-End and the Back-End using FastAPI"""
 
 from fastapi import FastAPI, status
-from logic.tasks import Task
+# from logic.tasks import Task
 from logic.user import User
 
 app = FastAPI()

@@ -1,7 +1,6 @@
 
 let lists = document.getElementById("list-group")
 
-
 // new_task, POST
 const createTask = async (username, taskName) => {
     try {
@@ -47,3 +46,18 @@ const deleteTask = async (username, taskName) => {
       console.error("Error deleting task:", error);
     }
   };
+
+
+
+let form = document.getElementById("task-form")
+form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const taskName = (document.getElementById("task-name") as HTMLInputElement).value;
+    const doesRepeat = (document.getElementById("task-recur") as HTMLInputElement).checked;
+    // TODO const username = ____
+
+    (document.getElementById("task-name") as HTMLInputElement).value = "";
+    (document.getElementById("task-recur") as HTMLInputElement).checked = false;
+
+    await createTask(taskName, doesRepeat);
+});
