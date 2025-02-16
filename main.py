@@ -1,42 +1,107 @@
 """Connecting the Front-End and the Back-End using FastAPI"""
 
-from fastapi import FastAPI
-from typing import Annotated
-from pydantic import BaseModel
+from fastapi import FastAPI, status
+# from logic.tasks import Task
+from logic.user import User
 
 app = FastAPI()
 
-class Task(BaseModel):
-    # mock before linking to backend
-    name: str
+db: dict[str, User] = {}
 
-db: dict[str, Task] = {"brush teeth": Task(name="brush teeth")}
-# have habits already populated
+# Example users
+caroline = User(name="Caroline", username="cgbryan1")
+caroline.add_task("Stats homework", False)
+caroline.add_task("Host office hours", True)
+db[caroline.username] = caroline
 
-# access paths
+katie = User(name="Katie", username="kgbrown5")
+katie.add_task("Host office hours", True)
+katie.add_task("Stats homework", False)
+db[katie.username] = katie
 
-@app.post("/{task_name}")
-def new_task(task: Task):
-    # add to database
-    # return success
+@app.post("/{username}/{task_name}") # how to show recurring?
+def new_task(username: str, task_name: str, reoccur: bool):
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    user.add_task(task_name, reoccur)
+    return {"message": "Task created successfully."}, status.HTTP_201_CREATED
 
-@app.get("/{task_name}")
-def access_task(task_name: str) -> Task:
-    # return full task
+@app.get("/{username}/{task_name}")
+def access_task(username: str, task_name: str):
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    task = user.get_task(task_name)
+    if not task:
+        return {"error": "Task not found"}, status.HTTP_404_NOT_FOUND
+    
+    return task
 
-@app.patch("/{task_name}")
-def check_off(task_name: str) -> Task:
-    # change done to true
-    # return full task
+@app.patch("/{username}/{task_name}")
+def toggle_check(username: str, task_name: str):
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    task = user.get_task(task_name)
+    if not task:
+        return {"error": "Task not found"}, status.HTTP_404_NOT_FOUND
+    
+    task.toggle_completion()  # Task-level method
+    return {"message": "Task completion toggled."}, status.HTTP_200_OK
 
-@app.delete("/{task_name}")
-def access_task(task_name: str) -> Task:
-    # confirm if habit, do you want to delete this reoccuring habit?
-    # delete task
-    # return success
+@app.delete("/{username}/{task_name}")
+def delete_task(username: str, task_name: str):
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    task = user.get_task(task_name)
+    if not task:
+        return {"error": "Task not found"}, status.HTTP_404_NOT_FOUND
+    
+    user.delete_task(task)
+    # return {"message": "Task deleted successfully."}, status.HTTP_204_NO_CONTENT
 
-@app.get("/")
-def access_task_list() -> list[str]:
-    # run through database, extract name, add to list to be returned
+# Moving a task up or down
+@app.patch("/{username}/{task_name}/{direction}")
+def shift_position(username: str, task_name: str, direction: str):
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    task = user.get_task(task_name)
+    if not task:
+        return {"error": "Task not found"}, status.HTTP_404_NOT_FOUND
+    
+    direction = direction.lower()
+    if direction == "up":
+        user.move_task_up(task)
+    elif direction == "down":
+        user.move_task_down(task)
+    else:
+        return {"error": "Invalid direction"}, status.HTTP_400_BAD_REQUEST
+    
+    return {"message": "Task moved successfully."}, status.HTTP_200_OK
 
-# TODO: reordering
+@app.get("/{username}")
+def access_task_list(username: str):
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    return {"tasks": user.tasks}
+
+
+# TODO is this right method? shouldn't be get bc unsafe
+@app.patch("/{username}")
+def reset_list(username: str) -> None:
+    user = db.get(username)
+    if not user:
+        return {"error": "User not found."}, status.HTTP_404_NOT_FOUND
+    
+    user.reset_list()
+    return {"message": "Tasks reset successfully."}, status.HTTP_200_OK

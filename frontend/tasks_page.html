@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To Do List</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <h2>Today's Tasks</h2>
+        <div id = "list-group">
+            <!-- for all items given, populate this with ULIs: checkbox, name, arrows to change priority, and trash button -->
+            <ul id="task-item"></ul>
+        <form id = "task-form">
+            <input type="text" id="task-name" placeholder="Enter task" required>
+            <input type="checkbox" id="task-recur"> Recurring?
+            <button type="submit">Add Task</button>
+        </form>
+        <button id="reset">Reset To Do List</button>
+    </body>
+</html>
