@@ -5,7 +5,7 @@ Created by Caroline Bryan (cgbryan1) and Katie Brown (kgbrown5) for UNC's 2025 P
 
 
 #### Inspiration
-Our inspiration stemmed from a lack of motivation to finish our tasks. We referenced existing roommate matching apps such as RoomSync to create an app that can be used by all UNC Chapel Hill students, regardless of their housing plans.
+Our inspiration stemmed from a lack of motivation to finish our tasks. FINISH
 
 
 #### What it does
