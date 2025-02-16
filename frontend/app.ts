@@ -91,11 +91,12 @@ const reset_list = async(username) => {
       method: "PATCH",
     });
 
-    await renderTaskList(username)
-
     if (!response.ok) {
       throw new Error("Failed to reset task list.");
     }
+
+    await renderTaskList(username); 
+
   } catch (error) {
     console.error("Error resetting task list:", error);
   }
@@ -118,12 +119,14 @@ const toggleCheck = async (username, taskName) => {
         const response = await fetch(`http://127.0.0.1:8000/${username}/${taskName}`, {
           method: "PATCH",
         });
-    
-        await renderTaskList(username)
 
         if (!response.ok) {
           throw new Error("Failed to change task completion.");
+          
         }
+
+        await renderTaskList(username)
+
       } catch (error) {
         console.error("Error changing task completion:", error);
       }
@@ -180,16 +183,13 @@ const moveDown = async (username, taskName) => {
   }
 };
 
-// let todos = Array.from(document.getElementsByClassName("task-item"))
-
-// TODO need to figure out how to access username and task name
 
 // this is a helper method to update each task with event handlers
 const addEventListenersToTask = (task: HTMLElement, taskName: string, username: string) => {
   const deleteButton = task.querySelector(".delete-button") as HTMLButtonElement;
   deleteButton?.addEventListener("click", (e: MouseEvent) => {
     e.stopPropagation();
-    deleteTask(username, taskName).then(() => renderTaskList(username));
+    deleteTask(username, taskName);
   });
 
   const checkBox = task.querySelector(".check-box") as HTMLButtonElement;
