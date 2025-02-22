@@ -9,22 +9,31 @@ We wanted to tackle a common challenge — staying motivated to complete tasks. 
 
 #### 🎯 What it does
 
-Task Dash is a program that allows users to compete with friends to finish their to do lists. Users can access their own to do list and add items that are either recurring or one-time tasks. These tasks can be reordered, individually deleted, and reset each day. Users can connect and compete with friends to reach the finish line in the interface - progress is represented by the percentage of tasks each user has completed.
+Task Dash is a program that turns task management into a friendly competitio! Users can create and track their to-do lists, adding both recurring and one-time tasks. Tasks can be reordered, deleted individually, and reset daily.
+For a unqiue, competitve edge, users can connect with friends and race to complete their lists — progress is visualized as a percentage, so everyone can see who's in the lead!
 
-Users can view and edit their to do lists on the "tasks" (leftmost) page. Users can compete against their friends in the center screen, and edit their own settings and friend connections on the right screen.
+We split our interface into 3 main sections:
+* **Tasks Page** (Left) – View and manage your personal to-do list.
+* **Competition Page** (Center) – Compete against friends in real-time.
+* **Settings & Friends Page** (Right) – Customize your experience and manage connections.
 
 #### 🛠️ How we built it
 
-We built out the backend of Task Dash using FastAPI, Python for endpoint functionality, and Pydantic for data validation and modeling. Our styling and frontend functionality utilized Typescript with HTML and CSS elements.
-We used Figma to create wireframes for prototyping. We also utilized Github to manage versions and allow collaboration between members of our team.
+We developed Task Dash using:
+
+* **FastAPI & Python** – Backend functionality and API endpoints.
+* **Pydantic** – Data validation and modeling.
+* **Typescript, HTML & CSS** – Frontend styling and interactions.
+* **Figma** – Wireframing and prototyping.
+* **GitHub** – Version control and team collaboration.
 
 #### 💡 Challenges, accomplishments, & what we learned
 
-Since we were a two-person team and had a limited working window, we had to significantly reduce the scope of our project from its original mockup. We decided to focus on creating a functioning FastAPI implementation - this was a challenge, as we had minimal experience creating our own APIs. However, it was incredibly rewarding and we're glad we took this opportunity to learn!
+As a two-person team with a tight deadline, we had to refine our project scope. We decided to focus on creating a functioning FastAPI implementation - this was a challenge, as we had minimal experience creating our own APIs. However, it was incredibly rewarding and we're glad we took this opportunity to learn!
 
 #### 🔮 What's next for Task Dash
 
-Because of the limited time frame of this hackathon, we were unable to fully implement the GUI that originally inspired this project. In the future, we plan to use React to design our user interface and implement the race functionality.
+Due to time constraints, we couldn’t fully implement the interactive GUI that initially inspired this project. Looking ahead, we plan to build out our frontend using React to enhance user experience and implement the race functionality.
 
 ### 🔗 Devpost
 
