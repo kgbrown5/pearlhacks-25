@@ -1,7 +1,7 @@
 # Task Dash
 
 To-Do List Competition Program
-Created by Caroline Bryan (cgbryan1) and Katie Brown (kgbrown5) for UNC's 2025 Pearl Hacks.
+Created by [Caroline Bryan](https://github.com/cgbryan1) and [Katie Brown](https://github.com/kgbrown5) for UNC's 2025 Pearl Hacks.
 
 #### 🚀 Inspiration
 
